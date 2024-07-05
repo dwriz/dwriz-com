@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { ReactTyped } from "react-typed";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { MdOutlineLightMode } from "react-icons/md";
 
 function App() {
+  const [backgroundMode, setBackgroundMode] = useState("dark");
+
+  function toggleBackgroundMode() {
+    if (backgroundMode === "dark") {
+      setBackgroundMode("light");
+    } else {
+      setBackgroundMode("dark");
+    }
+  }
+
   return (
     <>
-      <div className="bg-black text-white">
+      <div className={backgroundMode === "light" ? "bg-white text-black" : "bg-black text-white"}>
         <div className="flex flex-col items-center justify-center h-screen font-montserrat">
           <h1 className="text-6xl font-extralight mb-4">Dwiky Rizkya</h1>
           <ReactTyped
@@ -18,11 +29,14 @@ function App() {
           />
           <div className="flex mt-20 space-x-4">
             <a href="https://github.com/dwriz" target="_blank">
-              <FaGithub className="text-white text-3xl" />
+              <FaGithub className="text-3xl" />
             </a>
             <a href="https://linkedin.com/in/dwikyrizkya" target="_blank">
-              <FaLinkedin className="text-white text-3xl" />
+              <FaLinkedin className="text-3xl" />
             </a>
+            <button onClick={toggleBackgroundMode}>
+              <MdOutlineLightMode className="text-3xl" />
+            </button>
           </div>
         </div>
       </div>
